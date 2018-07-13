@@ -1,6 +1,6 @@
 {
   "name": "gulp-fez-sftp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "使用SFTP(SSH)上传文件到远程服务器",
   "license": "MIT",
   "repository": {

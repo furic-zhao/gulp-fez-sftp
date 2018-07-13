@@ -4,7 +4,6 @@ var fs = require('fs');
 var PluginError = require('plugin-error');
 var fancyLog = require('fancy-log');
 var colors = require('ansi-colors');
-var util = require('util');
 var through = require('through2');
 var Connection = require('ssh2');
 var async = require('async');
@@ -15,6 +14,10 @@ var assign = require('object-assign');
 var normalizePath = function(path) {
     return path.replace(/\\/g, '/');
 };
+
+var isArray = function(o) {
+    return Object.prototype.toString.call(o) == '[object Array]';
+}
 
 module.exports = function(options) {
     options = assign({}, options); // credit sindresorhus
@@ -68,7 +71,7 @@ module.exports = function(options) {
         key.location = key.location || ["~/.ssh/id_rsa", "/.ssh/id_rsa", "~/.ssh/id_dsa", "/.ssh/id_dsa"];
 
         //type normalization
-        if (!util.isArray(key.location))
+        if (!isArray(key.location))
             key.location = [key.location];
 
         //resolve all home paths
